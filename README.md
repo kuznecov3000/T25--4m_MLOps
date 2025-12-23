@@ -55,3 +55,22 @@ python src/train.py
 ```bash
 uvicorn src.api:app --reload
 ```
+# Flight Delay API (Lab 6)
+
+## Запуск локально
+uvicorn src.api:app --host 0.0.0.0 --port 8080
+
+
+## Сборка и запуск контейнера
+docker build -t flight-api .
+docker run -d -p 8080:8080 --name flight-api flight-api
+
+
+## Пример запроса
+curl -X POST "http://localhost:8080/predict"
+-H "Content-Type: application/json"
+-d '{"carrier":"AA","dep_hour":9,"distance":550}'
+
+
+## Ответ
+{"delay_probability": 0.3035}
