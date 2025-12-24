@@ -78,6 +78,6 @@ curl -X POST "http://localhost:8080/predict"
 
 # Flight Delay Prediction
 
-![CI Status](https://github.com/kuznecov3000/T25--4m_MLOps/LR7.jpg)
+![CI Status](LR7.jpg)
 
 ...
