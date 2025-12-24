@@ -78,6 +78,6 @@ curl -X POST "http://localhost:8080/predict"
 
 # Flight Delay Prediction
 
-![CI Status](https://github.com/YOUR_USERNAME/mlops-flight-delay/workflows/CI%20Pipeline/badge.svg)
+![CI Status](https://github.com/kuznecov3000/mlops-flight-delay/LR7.png)
 
 ...
