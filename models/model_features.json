@@ -1,0 +1,1 @@
+{"feature_names": ["carrier_encoded", "dep_hour", "distance", "weather_delay"], "feature_count": 4, "training_samples": 40000}
