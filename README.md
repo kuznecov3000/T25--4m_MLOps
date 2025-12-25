@@ -74,3 +74,9 @@ curl -X POST "http://localhost:8080/predict"
 
 ## Ответ
 {"delay_probability": 0.3035}
+
+# Flight Delay Prediction
+
+![CI Status](https://github.com/YOUR_USERNAME/mlops-flight-delay/workflows/CI%20Pipeline/badge.svg)
+
+...

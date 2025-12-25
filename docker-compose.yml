@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  airflow-webserver:
+    image: apache/airflow:2.7.0-python3.10
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__FERNET_KEY: your_fernet_key_here
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__CORE__DAGS_FOLDER: /airflow/dags
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/airflow/dags
+      - ./src:/airflow/src
+      - ./data:/airflow/data
+      - ./models:/airflow/models
+      - ./reports:/airflow/reports
+    command: webserver
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.0-python3.10
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__FERNET_KEY: your_fernet_key_here
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__CORE__DAGS_FOLDER: /airflow/dags
+    volumes:
+      - ./dags:/airflow/dags
+      - ./src:/airflow/src
+      - ./data:/airflow/data
+      - ./models:/airflow/models
+      - ./reports:/airflow/reports
+    command: scheduler
+
+volumes:
+  postgres_data:
